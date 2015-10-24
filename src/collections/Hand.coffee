@@ -6,8 +6,13 @@ class window.Hand extends Backbone.Collection
   hit: ->
     @add(@deck.pop())
     @last()
+    # check game over function
 
-  # Stand function to end turn
+  stand: ->
+    # Sets the score, disables hit button, move onto next player?
+    @set 'score'
+
+    if @isDealer then 0#gameover
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1

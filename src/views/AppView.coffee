@@ -4,8 +4,8 @@ class window.AppView extends Backbone.View
 
   template: _.template '
     <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
-    <div class="player-hand-container"></div>
     <div class="dealer-hand-container"></div>
+    <div class="players-container"></div>
   '
 
   events:
@@ -18,6 +18,13 @@ class window.AppView extends Backbone.View
   render: ->
     @$el.children().detach()
     @$el.html @template()
-    @$('.player-hand-container').html new HandView(collection: @model.get('currentGame').get 'playerHand').el
+    # debugger;
     @$('.dealer-hand-container').html new HandView(collection: @model.get('currentGame').get 'dealerHand').el
+    for player,ind in @model.get('currentGame').get('players')
+      debugger;
+      @$('.players-container').append new HandView(collection: player).el
+
+    # @model.get('currentGame').get('players').each( (player) -> 
+
+    #   )
 

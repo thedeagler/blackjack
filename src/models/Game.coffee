@@ -10,8 +10,13 @@
 ###
 
 class window.Game extends Backbone.Model
-  initialize: ->
+  initialize: (numPlayers) ->
     @set 'deck', deck = new Deck()
+    @set 'players', [0...numPlayers]
+    playArr = @get 'players'
+    for player, index in @get 'players'
+      playArr[index] = deck.dealPlayer()
+    @set 'players', playArr
+    debugger;      
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
-    debugger;
