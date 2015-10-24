@@ -17,6 +17,7 @@ class window.AppView extends Backbone.View
 
   newRound: ->
     @model.get('currentGame').get('currentPlayer').stand()
+    @model.get('currentGame').setPlayerScore(@model.get('currentGame').get('currentPlayer').scores())
     @model.get('currentGame').changeCurrentPlayer()
     # @listenTo(@get('currentPlayer'), 'stand', @changeCurrentPlayer)
 

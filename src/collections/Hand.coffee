@@ -12,10 +12,12 @@ class window.Hand extends Backbone.Collection
     # check game over function
 
   stand: ->
-    # Sets the score, disables hit button, move onto next player?
-    @set 'score', @get 'scores'[1] > 21 ? @get 'scores'[1] : @get 'scores'[0] 
+    # CHeck for bust 
 
-    # if @isDealer then 0#gameover
+    # scoresArr = @scores()
+    # if scoresArr[1] > 21 then score = scoresArr[0] else score =scoresArr[1]
+    # @set 'playerScore', score
+    # console.log(@get 'playerScore')
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1

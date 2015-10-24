@@ -12,6 +12,7 @@
 class window.Game extends Backbone.Model
   defaults:
     currentPlayerIndex: 0
+    scores: []
 
   initialize: (numPlayers) ->
     @set 'deck', deck = new Deck()
@@ -28,5 +29,13 @@ class window.Game extends Backbone.Model
     index = @get 'currentPlayerIndex'
     @set 'currentPlayerIndex', index + 1
     @set 'currentPlayer', @get('players')[@get 'currentPlayerIndex']
+    # If currentPlayerIndex > @get 'players'.length
+      # @playDealer()
 
+  setPlayerScore: (scoresArr)->
+    score = if scoresArr[1] > 21 then score = scoresArr[0] else score = scoresArr[1]
+    @get('scores')[@get 'currentPlayerIndex'] = score
 
+  playDealer: ->
+    while(@get('dealerHand').scores[1] < 17)
+      @get('dealerHand').hit()
