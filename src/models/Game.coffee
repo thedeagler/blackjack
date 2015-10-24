@@ -10,6 +10,9 @@
 ###
 
 class window.Game extends Backbone.Model
+  defaults:
+    currentPlayerIndex: 0
+
   initialize: (numPlayers) ->
     @set 'deck', deck = new Deck()
     @set 'players', [0...numPlayers]
@@ -17,6 +20,14 @@ class window.Game extends Backbone.Model
     for player, index in @get 'players'
       playArr[index] = deck.dealPlayer()
     @set 'players', playArr
-    debugger;      
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
+    @set 'currentPlayer', @get('players')[@get 'currentPlayerIndex']
+
+  changeCurrentPlayer: ->
+    # debugger;
+    index = @get 'currentPlayerIndex'
+    @set 'currentPlayerIndex', index + 1
+    @set 'currentPlayer', @get('players')[@get 'currentPlayerIndex']
+
+

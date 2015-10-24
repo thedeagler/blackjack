@@ -1,6 +1,9 @@
 class window.Hand extends Backbone.Collection
   model: Card
 
+  defaults:
+    name: 'Player'
+
   initialize: (array, @deck, @isDealer) ->
 
   hit: ->
@@ -10,9 +13,11 @@ class window.Hand extends Backbone.Collection
 
   stand: ->
     # Sets the score, disables hit button, move onto next player?
-    @set 'score'
+    # @set 'score'
 
-    if @isDealer then 0#gameover
+    # if @isDealer then 0#gameover
+
+    @trigger('stand')
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1
