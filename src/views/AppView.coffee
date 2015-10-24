@@ -10,14 +10,15 @@ class window.AppView extends Backbone.View
 
   events:
     'click .hit-button': -> @model.get('currentGame').get('currentPlayer').hit()
-    'click .stand-button': -> @model.get('currentGame').get('currentPlayer').stand()
+    'click .stand-button': -> @newRound()
 
   initialize: ->
-    @model.get('currentGame').get('currentPlayerIndex').on('change', @newRound, @)
     @render()
 
   newRound: ->
-    @model.get('currentGame').listenTo(@model.get('currentGame').get('currentPlayer'), 'stand', @model.get('currentGame').changeCurrentPlayer)
+    @model.get('currentGame').get('currentPlayer').stand()
+    @model.get('currentGame').changeCurrentPlayer()
+    # @listenTo(@get('currentPlayer'), 'stand', @changeCurrentPlayer)
 
 
   render: ->

@@ -25,7 +25,6 @@ class window.Game extends Backbone.Model
     @set 'currentPlayer', @get('players')[@get 'currentPlayerIndex']
 
   changeCurrentPlayer: ->
-    # debugger;
     index = @get 'currentPlayerIndex'
     @set 'currentPlayerIndex', index + 1
     @set 'currentPlayer', @get('players')[@get 'currentPlayerIndex']
