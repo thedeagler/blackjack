@@ -9,7 +9,7 @@ class window.AppView extends Backbone.View
   '
 
   events:
-    'click .hit-button': -> @model.get('currentGame').get('currentPlayer').hit()
+    'click .hit-button': -> if @model.get('currentGame').get('currentPlayer').hit() > 21 then @endPlayer()
     'click .stand-button': -> @endPlayer()
 
   initialize: ->
@@ -20,7 +20,6 @@ class window.AppView extends Backbone.View
     @model.get('currentGame').setPlayerScore(@model.get('currentGame').get('currentPlayer').score())
     @model.get('currentGame').changeCurrentPlayer()
     # @listenTo(@get('currentPlayer'), 'stand', @changeCurrentPlayer)
-
 
   render: ->
     @$el.children().detach()

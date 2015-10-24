@@ -9,11 +9,12 @@ class window.Hand extends Backbone.Collection
   hit: ->
     @add(@deck.pop())
     @last()
+    @score()
+    # add class for bust
+    # CHeck for bust
     # check game over function
 
   stand: ->
-    # CHeck for bust
-
     # scoresArr = @scores()
     # if scoresArr[1] > 21 then score = scoresArr[0] else score =scoresArr[1]
     # @set 'playerScore', score
@@ -33,6 +34,8 @@ class window.Hand extends Backbone.Collection
     # when there is an ace, it offers you two scores - the original score, and score + 10.
     max = @minScore() + 10 * @hasAce()
     min = @minScore()
+
+    if min > 21 then @trigger('bust')
 
     if max > 21 then min else max
 

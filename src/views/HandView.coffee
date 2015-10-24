@@ -3,8 +3,12 @@ class window.HandView extends Backbone.View
 
   template: _.template '<h2><% if(isDealer){ %>Dealer<% }else{ %>@model.name<% } %> (<span class="score"></span>)</h2>'
 
+  fun: ->
+    @$el.addClass('bust')
+
   initialize: ->
     @collection.on 'add remove change', => @render()
+    @collection.on 'bust', => @fun()
     @render()
 
   render: ->
