@@ -9,17 +9,18 @@ class window.AppView extends Backbone.View
   '
 
   events:
-    'click .hit-button': -> if @model.get('currentGame').get('currentPlayer').hit() > 21 then @endPlayer()
+    'click .hit-button': -> 
+      if @model.get('currentGame').get('currentPlayer').hit() >= 21
+        @endPlayer()
     'click .stand-button': -> @endPlayer()
 
   initialize: ->
     @render()
 
   endPlayer: ->
-    @model.get('currentGame').get('currentPlayer').stand()
+    # @model.get('currentGame').get('currentPlayer').stand()
     @model.get('currentGame').setPlayerScore(@model.get('currentGame').get('currentPlayer').score())
     @model.get('currentGame').changeCurrentPlayer()
-    # @listenTo(@get('currentPlayer'), 'stand', @changeCurrentPlayer)
 
   render: ->
     @$el.children().detach()
@@ -27,8 +28,4 @@ class window.AppView extends Backbone.View
     @$('.dealer-hand-container').html new HandView(collection: @model.get('currentGame').get 'dealerHand').el
     for player,ind in @model.get('currentGame').get('players')
       @$('.players-container').append new HandView(collection: player).el
-
-    # @model.get('currentGame').get('players').each( (player) ->
-
-    #   )
 

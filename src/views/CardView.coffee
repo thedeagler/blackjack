@@ -3,6 +3,9 @@ class window.CardView extends Backbone.View
 
   template: _.template '<%= rankName %> of <%= suitName %>'
 
+  events: 
+    'change:revealed': -> @render()
+
   initialize: -> @render()
 
   render: ->

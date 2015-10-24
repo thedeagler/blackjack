@@ -15,17 +15,19 @@ class window.Hand extends Backbone.Collection
     # check game over function
 
   show: ->
-    @each()
-
-  stand: ->
-    # scoresArr = @scores()
-    # if scoresArr[1] > 21 then score = scoresArr[0] else score =scoresArr[1]
-    # @set 'playerScore', score
-    # console.log(@get 'playerScore')
+    # Show dealer card
+    if @isDealer
+      @at(0).flip()
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1
   , 0
+
+  isWin: (bool) ->
+    if bool
+      @trigger('CHRISCHRISCHRIS')
+    else
+      @trigger('wahwah')
 
   minScore: -> @reduce (score, card) ->
     score + if card.get 'revealed' then card.get 'value' else 0
@@ -39,12 +41,5 @@ class window.Hand extends Backbone.Collection
     min = @minScore()
 
     if min > 21 then @trigger('bust')
-
     if max > 21 then min else max
-
-    ###
-    1 ace - minscore = 1, 1 + (10 * true) = 11
-    2 ace - minscore = 2, 2 + (10 * true) = 12
-    ###
-
 
