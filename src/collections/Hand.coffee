@@ -12,7 +12,7 @@ class window.Hand extends Backbone.Collection
     # check game over function
 
   stand: ->
-    # CHeck for bust 
+    # CHeck for bust
 
     # scoresArr = @scores()
     # if scoresArr[1] > 21 then score = scoresArr[0] else score =scoresArr[1]
@@ -27,11 +27,14 @@ class window.Hand extends Backbone.Collection
     score + if card.get 'revealed' then card.get 'value' else 0
   , 0
 
-  scores: ->
+  score: ->
     # The scores are an array of potential scores.
     # Usually, that array contains one element. That is the only score.
     # when there is an ace, it offers you two scores - the original score, and score + 10.
-    [@minScore(), @minScore() + 10 * @hasAce()]
+    max = @minScore() + 10 * @hasAce()
+    min = @minScore()
+
+    if max > 21 then min else max
 
     ###
     1 ace - minscore = 1, 1 + (10 * true) = 11

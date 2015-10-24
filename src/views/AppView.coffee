@@ -10,14 +10,14 @@ class window.AppView extends Backbone.View
 
   events:
     'click .hit-button': -> @model.get('currentGame').get('currentPlayer').hit()
-    'click .stand-button': -> @newRound()
+    'click .stand-button': -> @endPlayer()
 
   initialize: ->
     @render()
 
-  newRound: ->
+  endPlayer: ->
     @model.get('currentGame').get('currentPlayer').stand()
-    @model.get('currentGame').setPlayerScore(@model.get('currentGame').get('currentPlayer').scores())
+    @model.get('currentGame').setPlayerScore(@model.get('currentGame').get('currentPlayer').score())
     @model.get('currentGame').changeCurrentPlayer()
     # @listenTo(@get('currentPlayer'), 'stand', @changeCurrentPlayer)
 
@@ -29,7 +29,7 @@ class window.AppView extends Backbone.View
     for player,ind in @model.get('currentGame').get('players')
       @$('.players-container').append new HandView(collection: player).el
 
-    # @model.get('currentGame').get('players').each( (player) -> 
+    # @model.get('currentGame').get('players').each( (player) ->
 
     #   )
 

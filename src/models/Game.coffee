@@ -6,13 +6,13 @@
   4. When everyone is done hitting, anyone who has higher score than dealer wins
   *. Split if initial cards are equal value
   *. Betting
-  *. Double Down: double your initial bet following the initial two-card deal, but you can hit one card only. 
+  *. Double Down: double your initial bet following the initial two-card deal, but you can hit one card only.
 ###
 
 class window.Game extends Backbone.Model
   defaults:
     currentPlayerIndex: 0
-    scores: []
+    playerScores: []
 
   initialize: (numPlayers) ->
     @set 'deck', deck = new Deck()
@@ -32,9 +32,8 @@ class window.Game extends Backbone.Model
     # If currentPlayerIndex > @get 'players'.length
       # @playDealer()
 
-  setPlayerScore: (scoresArr)->
-    score = if scoresArr[1] > 21 then score = scoresArr[0] else score = scoresArr[1]
-    @get('scores')[@get 'currentPlayerIndex'] = score
+  setPlayerScore: ->
+    @get('playerScores')[@get 'currentPlayerIndex'] = @get('currentPlayer').score()
 
   playDealer: ->
     while(@get('dealerHand').scores[1] < 17)
