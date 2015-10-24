@@ -14,6 +14,9 @@ class window.Hand extends Backbone.Collection
     # CHeck for bust
     # check game over function
 
+  show: ->
+    @each()
+
   stand: ->
     # scoresArr = @scores()
     # if scoresArr[1] > 21 then score = scoresArr[0] else score =scoresArr[1]

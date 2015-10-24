@@ -26,15 +26,18 @@ class window.Game extends Backbone.Model
     @set 'currentPlayer', @get('players')[@get 'currentPlayerIndex']
 
   changeCurrentPlayer: ->
-    index = @get 'currentPlayerIndex'
-    @set 'currentPlayerIndex', index + 1
-    @set 'currentPlayer', @get('players')[@get 'currentPlayerIndex']
-    # If currentPlayerIndex > @get 'players'.length
-      # @playDealer()
+    if @get('currentPlayerIndex') + 1 >= @get('players').length
+      @playDealer()
+    else
+      index = @get 'currentPlayerIndex'
+      @set 'currentPlayerIndex', index + 1
+      @set 'currentPlayer', @get('players')[@get 'currentPlayerIndex']
 
   setPlayerScore: ->
     @get('playerScores')[@get 'currentPlayerIndex'] = @get('currentPlayer').score()
 
   playDealer: ->
-    while(@get('dealerHand').scores[1] < 17)
+    # debugger;
+    while(@get('dealerHand').score() < 17)
       @get('dealerHand').hit()
+    @get('dealerHand')
