@@ -13,6 +13,7 @@ class window.HandView extends Backbone.View
     @collection.on 'push', => @$el.addClass('draw')
     @collection.on 'lose', => @$el.addClass('lost')
     @collection.on 'CHRISCHRISCHRIS', => @$el.addClass('DING-DING-DING')
+    @collection.on 'current', => @$el.toggleClass('current')
     @render()
 
   render: ->

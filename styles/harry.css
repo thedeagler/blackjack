@@ -12,8 +12,8 @@ img {
   max-width: 100%;
 }
 
-.covered {
-  background-color: black;
+.current {
+  background-color: lightskyblue;
 }
 
 .hand {

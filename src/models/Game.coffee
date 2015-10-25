@@ -7,6 +7,8 @@
   *. Split if initial cards are equal value
   *. Betting
   *. Double Down: double your initial bet following the initial two-card deal, but you can hit one card only.
+  *. Disable hit/stay when dealer plays
+  *. Reset game button
 ###
 
 class window.Game extends Backbone.Model
@@ -25,14 +27,20 @@ class window.Game extends Backbone.Model
     @set 'dealerHand', deck.dealDealer()
     @set 'dealerScore', @get('dealerHand').score()
     @set 'currentPlayer', @get('players')[@get 'currentPlayerIndex']
+    # debugger;
+
+  firstPlayer: ->
+    @get('currentPlayer').changePlayer()
 
   changeCurrentPlayer: ->
+    @get('currentPlayer').changePlayer()
     if @get('currentPlayerIndex') + 1 >= @get('players').length
       @playDealer()
     else
       index = @get 'currentPlayerIndex'
       @set 'currentPlayerIndex', index + 1
       @set 'currentPlayer', @get('players')[@get 'currentPlayerIndex']
+    @get('currentPlayer').changePlayer()
 
   setPlayerScore: ->
     @get('playerScores')[@get 'currentPlayerIndex'] = @get('currentPlayer').score()

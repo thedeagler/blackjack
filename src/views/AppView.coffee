@@ -16,9 +16,9 @@ class window.AppView extends Backbone.View
 
   initialize: ->
     @render()
+    @.model.get('currentGame').firstPlayer()
 
   endPlayer: ->
-    # @model.get('currentGame').get('currentPlayer').stand()
     @model.get('currentGame').setPlayerScore(@model.get('currentGame').get('currentPlayer').score())
     @model.get('currentGame').changeCurrentPlayer()
 

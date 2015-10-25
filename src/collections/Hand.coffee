@@ -6,6 +6,9 @@ class window.Hand extends Backbone.Collection
 
   initialize: (array, @deck, @isDealer) ->
 
+  changePlayer: ->
+    @trigger('current')
+
   hit: ->
     @add(@deck.pop())
     @last()
