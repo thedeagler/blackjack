@@ -1,7 +1,5 @@
-# FIX MODEL NAME PLAYER NAME THING
 class window.HandView extends Backbone.View
   className: 'hand'
-  # name: 'Click to enter your name'
 
   template: _.template '<h2><% if(isDealer){ %>Dealer<% }else{ } %> (<span class="score"></span>)</h2>'
 
