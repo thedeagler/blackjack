@@ -7,6 +7,11 @@
   margin-right: 20px;
 }
 
+body {
+  background-image: '/img/table.jpg';
+  background-size: 'cover';
+}
+
 img {
   max-height: 100%;
   max-width: 100%;

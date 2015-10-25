@@ -1,9 +1,6 @@
 class window.Hand extends Backbone.Collection
   model: Card
 
-  defaults:
-    name: 'Player'
-
   initialize: (array, @deck, @isDealer) ->
 
   changePlayer: ->
