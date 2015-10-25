@@ -48,22 +48,13 @@ class window.Game extends Backbone.Model
   muchWinnerization: =>
     _.each(@get('playerScores'), (score, index) =>
       if score <= 21
-        debugger
-        if @get('dealerScore') > 21 or score > @get('dealerScore')
+        if score == @get('dealerScore')
+          @get('players')[index] .isWin('push')
+        else if @get('dealerScore') > 21 or score > @get('dealerScore')
           @get('players')[index] .isWin(true)
         else
           @get('players')[index] .isWin(false)
-    , @
-    # @get('playerScores').forEach( (score, index) =>
-    #   debugger;
-    #   if score <= 21
-    #     if @get('dealerScore') > 21 or score > @get('dealerScore')
-    #       @get('players')[index].isWin(true)
-    #     else
-    #       @get('players')[index].isWin(false)
-          
-
-    )
+    , @)
 
 
 

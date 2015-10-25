@@ -1,13 +1,8 @@
+# FIX MODEL NAME PLAYER NAME THING
 class window.HandView extends Backbone.View
   className: 'hand'
 
   template: _.template '<h2><% if(isDealer){ %>Dealer<% }else{ %>@model.name<% } %> (<span class="score"></span>)</h2>'
-
-  events:
-    'CHRISCHRISCHRIS': -> console.log('what')
-    # @$el.addClass('winnerizationator')
-    'wahwah': -> console.log('what')
-    # @$el.addClass('wah-wah-you-lose')
 
   fun: ->
     @$el.addClass('bust')
@@ -15,7 +10,8 @@ class window.HandView extends Backbone.View
   initialize: ->
     @collection.on 'add remove change', => @render()
     @collection.on 'bust', => @fun()
-    @collection.on 'wahwah', => @$el.addClass('sux2sux')
+    @collection.on 'push', => @$el.addClass('draw')
+    @collection.on 'lose', => @$el.addClass('lost')
     @collection.on 'CHRISCHRISCHRIS', => @$el.addClass('DING-DING-DING')
     @render()
 

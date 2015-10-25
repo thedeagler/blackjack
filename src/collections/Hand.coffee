@@ -24,10 +24,12 @@ class window.Hand extends Backbone.Collection
   , 0
 
   isWin: (bool) ->
-    if bool
+    if bool is 'push'
+      @trigger('push')
+    else if bool
       @trigger('CHRISCHRISCHRIS')
     else
-      @trigger('wahwah')
+      @trigger('lose')
 
   minScore: -> @reduce (score, card) ->
     score + if card.get 'revealed' then card.get 'value' else 0
